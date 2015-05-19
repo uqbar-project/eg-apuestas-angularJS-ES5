@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="apuestasApp">
+<head>
+	<title>Apuestas</title>
+</head>
+<body>
+<div ng-controller="apuestasCtrl">
+	<form name="apuestasForm" ng-submit="apostar()" class="css-form">
+		<label>Fecha:
+		<input type="date" name="fecha" 
+				ng-model="apuesta.fecha" autofocus="autofocus" placeholder="Fecha de la apuesta" required="true">
+		</label>
+		<br>
+		<label>Monto:<input type="number" name="monto" ng-model="apuesta.monto" placeholder="Monto en $" required="true"></label>
+		<br>
+		<label>Tipo de Apuesta:
+			<select name="tipoApuesta" 
+				ng-model="apuesta.tipo" ng-options="tipo.descripcion for tipo in tiposApuesta" required="true"></select>
+			<div ng-show="apuestasForm.$invalid">
+				<span ng-show="apuestasForm.tipoApuesta.$error.message">{{apuestasForm.tipoApuesta.$error.message}}</span>
+			</div>
+		</label>
+		<br>
+		<label>Qu&eacute; apost&aacute;s:
+			<select name="apuesta" ng-model="apuesta.valorApostado" ng-options="valor for valor in apuesta.tipo.valoresAApostar"
+			 ng-disabled="!apuesta.tipo.valoresAApostar" required="true"></select>
+		</label>
+		<br>
+		<button type="submit">Apostar</button>
+		<br>
+	</form>
+</div>
+
+<script src="vendor/js/angular.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/apuestas.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/filters.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>

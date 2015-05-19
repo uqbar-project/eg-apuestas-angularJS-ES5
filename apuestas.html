@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="no-js" ng-app="apuestasApp">
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+		<title>Apuestas</title>
+    </head>
+	<body>
+		<div class="container" ng-controller="apuestasCtrl">
+			<form name="apuestasForm" ng-submit="apostar()" class="css-form">
+				<br>
+				<div ng-show="apuestasForm.$invalid">
+					<div class="alert alert-danger" ng-show="apuestasForm.tipoApuesta.$error.message">{{apuestasForm.tipoApuesta.$error.message}}</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-xs-6 col-md-4" align="right">
+						<b>Fecha:</b>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<div class="row">
+        					<div class="col-md-6">
+            					<p class="input-group">
+	              					<input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="apuesta.fecha" is-open="opened" min-date="minDateFechaApuesta" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" />
+	              					<span class="input-group-btn">
+	                					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+	              					</span>	
+            					</p>
+        					</div>
+    					</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-xs-6 col-md-4" align="right">
+					<b>Monto:</b>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<input type="number" name="monto" class="form-control" ng-model="apuesta.monto" placeholder="Monto en $" required="true"></label>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-xs-6 col-md-4" align="right">
+					<b>Tipo de Apuesta:</b>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<select name="tipoApuesta" class="form-control"  
+							ng-model="apuesta.tipo" ng-options="tipo.descripcion for tipo in tiposApuesta" required="true"></select>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-xs-6 col-md-4" align="right">
+						<b>Qu&eacute; apost&aacute;s:</b>
+					</div>
+					<div class="col-xs-6 col-md-4 form-group">
+						<select name="apuesta" class="form-control" ng-model="apuesta.valorApostado" ng-options="valor for valor in apuesta.tipo.valoresAApostar" ng-disabled="!apuesta.tipo.valoresAApostar" required="true"></select>
+					</div>
+				</div>
+				<br>
+				<div class="row" align="center">
+					<button class="btn btn-primary" type="submit">Apostar</button>
+				</div>
+				<br>
+				<div class="row" align="center">
+					<div class="alert alert-info" ng-show="apuesta.resultado">{{apuesta.resultado.valor()}}</div>
+				</div>
+			</form>
+		</div>
+		
+		<script src="bower_components/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/resultado.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/apuestas.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/filters.js" type="text/javascript" charset="utf-8"></script>
+
+	</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "apuestas-ui-angular",
+  "version": "1.0.0",
+  "description": "Apuestas UI Angular",
+  "main": "''",
+  "scripts": {
+    "prestart": "npm install",
+    "postinstall": "",
+    "start": "http-server -p 8000 -c-1 -o ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "svn",
+    "url": "https://xp-dev.com/svn/uqbar/examples/ui/web/angular/apuestas-ui-angular/"
+  },
+  "keywords": [
+    "angular",
+    "apuestas"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.4",
+    "angular-bootstrap": "^0.12.2",
+    "bootstrap": "^3.3.5",
+    "http-server": "^0.8.0"
+  }
+}

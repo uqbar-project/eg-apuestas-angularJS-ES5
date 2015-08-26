@@ -1,28 +1,22 @@
-var apuestasApp = angular.module('apuestasApp', ['ui.bootstrap']);
+var apuestasApp = angular.module('apuestasApp', [ 'ui.bootstrap' ]);
 
-apuestasApp.controller('ApuestasController', [function () {
-  this.apuesta = apuesta();
+apuestasApp.controller('apuestasCtrl', function() {
+	var self = this;
+	this.apuesta = new Apuesta();
+	this.tiposApuesta = [ new Pleno(), new Docena() ];
+	this.fechaMinimaApuesta = new Date();
+	this.verCalendario = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+		self.calendarioAbierto = true;
+	};
 
-  this.tiposApuesta = [new pleno(), new docena()];
-
-  this.open = function ($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.opened = true;
-  };
-
-  this.minDateFechaApuesta = new Date();
-
-  this.apostar = function () {
-    try {
-      this.apuesta.apostar();
-    } catch (exception) {
-      console.log(exception);
-      var form = this.apuestasForm;
-      form.$invalid = true;
-      form.tipoApuesta.$error.message = exception;
-    }
-  };
-
-}]);
-
+	this.apostar = function(apuestasForm) {
+		try {
+			self.apuesta.apostar();
+		} catch (exception) {
+			apuestasForm.$invalid = true;
+			self.errorMessage = exception;
+		}
+	};
+});

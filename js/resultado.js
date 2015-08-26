@@ -1,24 +1,13 @@
-function Resultado(numeroGanador) {
-	this.numeroGanador = numeroGanador;
+function Resultado(gano, numeroGanador, montoAGanar) {
+    this.gano = gano;
+    this.numeroGanador = numeroGanador;
+    this.montoAGanar = montoAGanar;
 }
 
-/** Subclase de Ganador **/
-Ganador.prototype = new Resultado();
-Ganador.prototype.constructor = Ganador;
-function Ganador(numeroGanador, montoAGanar) {
-	Resultado.call(this, numeroGanador);
-	this.montoAGanar = montoAGanar;
-}
-Ganador.prototype.valor = function(){ 
-	return '¡¡ Ganaste $' + this.montoAGanar + " !!";
-}
-
-/** Subclase de Perdedor **/
-Perdedor.prototype = new Resultado();
-Perdedor.prototype.constructor = Perdedor;
-function Perdedor(numeroGanador) {
-	Resultado.call(this, numeroGanador);
-}
-Perdedor.prototype.valor = function(){ 
-	return '¡¡Perdiste!! Salió el ' + this.numeroGanador;
-}
+Resultado.prototype.valor = function() {
+    if (this.gano) {
+        return '¡¡ Ganaste $' + this.montoAGanar + " !!";
+    } else {
+        return '¡¡Perdiste!! Salió el ' + this.numeroGanador;
+    }
+};

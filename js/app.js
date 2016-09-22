@@ -13,6 +13,7 @@ apuestasApp.controller('apuestasCtrl', function() {
 
 	this.apostar = function(apuestasForm) {
 		try {
+			self.errorMessage = "";
 			self.apuesta.apostar();
 		} catch (exception) {
 			apuestasForm.$invalid = true;

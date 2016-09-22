@@ -40,6 +40,7 @@ function Apuesta() {
         this.tipoApuesta.validar(this);
     };
     this.apostar = function() {
+		this.resultado = null;
         this.validarApuesta();
 		var numeroGanador = Math.floor(Math.random() * 37);
 		var gano = this.tipoApuesta
